@@ -13,6 +13,9 @@
                    }
                }
            }
+           if(isset($_POST['order'])){
+               header('location:login.php');
+           }
         }
         if(isset($_POST['dec'])){
             $quantity = $quantity - 1;
@@ -90,15 +93,14 @@
                                         <div class="border-rounded">
                                             <div class="row bg-white">
                                                 <div class="col-md-3">
-                                                    <img src="<?PHP echo $row['image']; ?>" alt="" height="100px" class="image-fluid">
+                                                    <img src="<?PHP echo "Images/".$row['image']; ?>" alt="" height="100px" class="image-fluid">
                                                 </div>
                                                 <div class="col-md-6">
                                                     <h5 class="pt-2"><?PHP echo $row['name']; ?></h5>
                                                     <h5 class="pt-2">Rs.<?PHP echo $row['price']; ?>
-                                                    <span>(<?PHP echo $row['discount']; ?>% off)</span>
+                                                    <span>(<?PHP echo $row['discount']; ?> off)</span>
                                                     </h5>
                                                     <!-- <input type="hidden" name="id" value=""> -->
-                                                    <button type="submit" class="btn btn-warning">Order Now</button>
                                                     <button type="submit" class="btn btn-danger mx-2" name="remove">Remove</button>
                                                 </div>
                                                 <div class="col-md-3 py-5">
@@ -138,6 +140,7 @@
                                     echo "<h6>Price (0 items)</h6>";
                                 }
                             ?>
+                            <h6>Discount</h6>
                             <h6>Delivery Charges</h6>
                             <hr>
                             <h6>Amount Payable</h6>
@@ -147,7 +150,8 @@
                             <h6>Rs.<?php echo $discount;?></h6>
                             <h6 class="text-success">FREE</h6>
                             <hr>
-                            <h6>Rs.<?php echo $payable = $total - $discount;?></h6>
+                            <h6>Rs.<?php echo $payable = $total - $discount;?></h6><br>
+                            <a href="login.php" name="order" value="order" class="btn btn-success btn-lg">Order Now</a>
                         </div>
                     </div>
                 </div>

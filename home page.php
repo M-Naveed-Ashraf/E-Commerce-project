@@ -144,9 +144,9 @@
                 <div class="card">
                     <h6 class="card-title bg-dark text-white p-2 text-uppercase text-center"> <?PHP echo $product['name']; ?></h6>
                     <div class="card-body">
-                      <img src="<?PHP echo $product['image']; ?>" alt="Book Image" height="120px" class="img-fluid mb-2">
+                      <img src="<?PHP echo "Images/".$product['image']; ?>" alt="Book Image" height="120px" class="img-fluid mb-2">
                       <h6>Rs: <?PHP echo $product['price']; ?>
-                      <span>(<?PHP echo $product['discount']; ?>% off)</span></h6>
+                      <span>(<?PHP echo $product['discount']; ?> off)</span></h6>
                       <h6 class="badge badge-success">4.4 <i class="fas fa-star"></i></h6>
                       <input type="number" name="quantity" class="form-control" value="1" min="1" max="10" placeholder="Quantity">
                     </div>

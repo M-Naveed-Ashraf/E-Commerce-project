@@ -1,6 +1,30 @@
 
 <?php
     session_start();
+
+          // Admin Login
+    $con = mysqli_connect('localhost','root','','e-commerce');
+
+    if(isset($_POST['AdminLogin'])){
+      $user = $_POST['user'];
+      $password = $_POST['password'];
+
+      $query = "SELECT * FROM admin WHERE name='$user' && password='$password'";
+      $query_run = mysqli_query($con,$query) or die('query ot executed');
+      
+      $result = mysqli_fetch_array($query_run);
+
+      if($result['name'] == $user && $result['password'] == $password){
+        header('location:admin.php');
+      }
+      else{
+        echo "Incorrect email. Redirecting you back to login page...";
+        ?>
+        <meta http-equiv="refresh" content="2;url=login.php" />
+        <?php
+      }
+    }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,7 +86,7 @@
         <div class="row">
             <div class="col-lg-6 login-form-1">
                 <h3>Admin Login</h3>
-                <form action="validate.php" method="post">
+                <form action="login.php" method="post">
                     <div class="form-group">
                         <label>Username:</label> <input type="text" name="user" class="form-control" placeholder="Username">
                     </div>
@@ -70,7 +94,7 @@
                         <label>Password:</label><input type="password" name="password" class="form-control" placeholder="Your Password">
                     </div>
                     <div class="form-group">
-                        <input type="submit" class="btnSubmit" value="Login">
+                        <input type="submit" name="AdminLogin" class="btnSubmit" value="Login">
                     </div>
                     <div class="form-group">
                         <a href="#" class="ForgetPwd">Forget Password?</a>
@@ -79,7 +103,7 @@
             </div>
             <div class="col-lg-6 login-form-2">
                 <h3>User Login</h3>
-                <form action="validate.php" method="post">
+                <form action="login.php" method="POST">
                     <div class="form-group">
                        <label>Username:</label> <input type="text" name="user" class="form-control" placeholder="Username">
                     </div>
@@ -114,9 +138,9 @@
                                     <div class="form-group">
                                         <label>Username:</label> <input type="text" name="user" class="form-control" placeholder="Username" required>
                                     </div>
-                                    <div class="form-group">
-                                        <label>Email:</label> <input type="email" name="email" class="form-control" placeholder="abc@gmail.com" required>
-                                    </div>
+                                    <!-- <div class="form-group">
+                                        <label>Email:</label> <input type="email" name="email" class="form-control" placeholder="abc@gmail.com">
+                                    </div> -->
                                     <div class="form-group">
                                         <label>Password:</label><input type="password" name="password" class="form-control" placeholder="Your Password" required>
                                     </div>
